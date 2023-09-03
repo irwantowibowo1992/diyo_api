@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Helpers;
+
+use Illuminate\Support\Str;
+
+class Helper
+{
+    public static function generateRandomString()
+    {
+        $randomString = 'client_' . Str::random(10); // Menggunakan helper Str untuk menghasilkan string acak sepanjang 10 karakter
+        return $randomString;
+    }
+
+    public static function generateSalesInvoice()
+    {
+        $date = date('d');
+        $month = date('m');
+        $year = date('Y');
+        $time = date('H:i:s');
+        $prefix = 'S-';
+        return $prefix.$date.$month.$year.'-'.$time;
+    }
+}
