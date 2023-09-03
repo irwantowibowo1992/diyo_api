@@ -35,4 +35,9 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
         '/sales/{id}',
         [App\Http\Controllers\SaleController::class, 'show']
     );
+
+    Route::get(
+        '/inventories',
+        [App\Http\Controllers\InventryController::class, 'index']
+    );
 });
