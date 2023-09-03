@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Helpers\Helper;
 
 class SaleDetailResource extends JsonResource
 {
@@ -16,10 +17,11 @@ class SaleDetailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'sale_number' => $this->title,
-            'total_price' => $this->news_content,
-            'created' => date_format($this->created_at, 'Y/m/d H:i:s'),
-            'cart' => $this->whenLoaded('cart')
+            'sale_number' => $this->sale_number,
+            'total_price' => $this->total_price,
+            'created' => Helper::formatDate($this->created_at),
+            'cart' => $this->whenLoaded('cart'),
+            'payment_method' => $this->whenLoaded('paymentMethod'),
         ];
     }
 }

@@ -8,8 +8,17 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    public function show($id) {
-        $sale = Sale::with(['user', 'cart'])->findOrFail($id);
+    public function show(Request $request, $id) {
+        if(!$request->query('key')) {
+            return response()->json(['error' => 'Unauthorized Access'], 400);
+        }
+        $sale = Sale::with(
+            [
+                'user:id,name,email',
+                'cart:id,cart_item',
+                'paymentMethod:id,name'
+            ]
+        )->findOrFail($id);
         return new SaleDetailResource($sale);
     }
 }

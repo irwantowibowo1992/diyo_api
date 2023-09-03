@@ -45,6 +45,5 @@ class SaleSeeder extends Seeder
         $milliseconds = round(microtime(true) * 1000);
         $prefix = 'S-';
         return $prefix.$date.$month.$year.'-'.$timeWithoutColon.'-'.rand(1, 100);
-        ;
     }
 }

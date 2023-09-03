@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class Helper
@@ -18,7 +19,13 @@ class Helper
         $month = date('m');
         $year = date('Y');
         $time = date('H:i:s');
+        $timeWithoutColon = str_replace(':', '', $time);
         $prefix = 'S-';
-        return $prefix.$date.$month.$year.'-'.$time;
+        return $prefix.$date.$month.$year.'-'.$timeWithoutColon.'-'.rand(1, 100);
+    }
+
+    public static function formatDate($date, $format = 'j F Y H:i:s') {
+        $carbonDate = Carbon::parse($date);
+        return $carbonDate->format($format);
     }
 }
